@@ -1,0 +1,80 @@
+package udsm;
+import java.io.*;
+import com.dropbox.core.*;
+import com.dropbox.core.DbxWebAuthNoRedirect;
+import com.dropbox.core.DbxRequestConfig;
+import com.dropbox.core.DbxAppInfo;
+import com.dropbox.core.DbxClient;
+import com.dropbox.core.DbxWriteMode;
+import java.util.Locale;
+import static udsm.Runtime.Runtime;
+class UDSM{
+/* @param args */
+    /**
+     *
+     * @param args
+     * @throws IOException
+     * @throws DbxException
+     */
+
+    static void main (String[] args) throws IOException, DbxException
+    {
+        final String KEY="htko8t7yhv5mb49";  //Uninheritable 
+        final String SCRET_Auth ="atexpu0am01v2gp";  //
+    
+        BufferedReader US = new BufferedReader (new ("UserRepo.txt"));
+        BufferedReader br = new BufferedReader (new (System.in));
+        String code_in;
+        String Oauth; 
+        DbxAppInfo App_Auth; 
+        DbxRequestConfig File_config;
+        DbxWebAuthNoRedirect DROPB_AUTH;
+        
+        App_Auth = new DbxAppInfo(KEY, SCRET_Auth);
+        File_config = new DbxRequestConfig("UDSM/1.0", Locale.getDefault().toString());   
+        DROPB_AUTH = new DbxWebAuthNoRedirect(File_config, App_Auth);
+         
+        String User_str, pass_str; 
+	
+        for (int i = 0; i<1;){	
+	System.out.println("Input name"); 
+        User_str = US.readLine();
+        i++;
+        }
+
+	for (int i = 0; i<1;){         
+	  System.out.println("Input pass"); 
+        pass_str = US.readLine();
+            i++;
+        }         
+        Runtime();    
+	
+            String URL_AUTH = DROPB_AUTH.start();
+            System.out.println(URL_AUTH);                 
+            System.out.println(URL_AUTH.length()); 
+         
+            //Instanciate multiple client accessstreams
+            code_in =  new BufferedReader(new InputStreamReader(System.in)).readLine().trim();
+            DbxAuthFinish authFinish = DROPB_AUTH.finish(code_in);
+            Oauth = authFinish.accessToken;    
+            DbxClient cilent_ACCESS = new DbxClient (File_config, Oauth);   
+            System.out.println(Oauth); 
+                
+            File IOFile = new File("UserConsole.txt");
+            FileInputStream IOStream = new  FileInputStream(IOFile);
+            
+            try{
+                DbxEntry.File uploadFile;
+               uploadFile = cilent_ACCESS.uploadFile("/User_file.txt", DbxWriteMode.add(),IOStream.length(),IOStream);
+                System.out.println("content Uploaded:" + uploadFile.toString());
+            }finally{
+                    IOStream.close(); 
+            }
+    }
+}
+//syn_test          
+        //int a = 1;
+	//int b = 2;
+	//int q= 0;
+        //System.out.println ((a + " " + b));
+//String read Stream;

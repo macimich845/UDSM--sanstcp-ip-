@@ -1,0 +1,11 @@
+Is it possible to run .java files Without Main? 
+T
+Does the reserved Word "final" I.E final long X = 0; allow objects to be inherited? 
+F
+Its possible to create a highly functional class without a constructer 
+F
+Protected, Private and Final prevent an Objects inheritance
+T
+The Acronym JRE means "Java Read-Write Enviroment"  
+F
+
