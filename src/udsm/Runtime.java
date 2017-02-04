@@ -38,8 +38,8 @@ import java.io.IOException;
             {
                 System.out.println ("you're not correct!");
             }
-
                 }
             }
         }   // System.out.println (A);
         
+//Rectify this syntacic load of shit
